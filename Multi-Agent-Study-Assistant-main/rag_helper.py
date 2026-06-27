@@ -144,8 +144,6 @@ class RAGHelper:
             bool: True if successful, False otherwise
         """
         try:
-            from langchain.schema import Document
-            
             # Create document
             doc = Document(page_content=text, metadata=metadata or {})
             

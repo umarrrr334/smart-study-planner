@@ -1,300 +1,138 @@
-# 📚 Multi-Agent AI Study Assistant
+# Multi-Agent AI Study Assistant
 
-A powerful, personalized learning platform powered by multiple specialized AI agents. Get custom learning roadmaps, practice quizzes, AI tutoring, and RAG-powered document Q&A to supercharge your studies!
+A Streamlit study workspace powered by multiple AI agents. It helps learners create personalized roadmaps, discover resources, generate quizzes, ask a tutor, and query uploaded study documents with local vector search.
 
-## 🌟 Features
+## Features
 
-### 🎯 Personalized Learning Analysis
-- **Student Profiling**: AI analyzes your knowledge level, goals, and learning style
-- **Gap Analysis**: Identifies what you need to learn and prerequisite knowledge
-- **Custom Recommendations**: Tailored approach based on your unique needs
+- Personalized student analysis based on topic, goal, current level, time, and learning style
+- AI-generated learning roadmap with downloadable Markdown output
+- Resource finder for curated study materials
+- Quiz generator with difficulty, focus area, and question count controls
+- AI tutor for follow-up explanations and concept support
+- Document Q&A for PDF and text uploads using ChromaDB
+- Local hash-based document embeddings, so document search does not require OpenAI embeddings
+- Groq and OpenAI provider support
 
-### 🗺️ Smart Learning Roadmaps
-- **Structured Learning Paths**: Break down complex topics into manageable phases
-- **Time-Optimized**: Plans adapted to your available study time
-- **Milestone Tracking**: Clear checkpoints to measure progress
-- **Flexible Scheduling**: Adjust pace based on your schedule
+## Tech Stack
 
-### 📝 Dynamic Quiz Generation
-- **Adaptive Difficulty**: Questions matched to your knowledge level
-- **Multiple Question Types**: MCQ, True/False, Short Answer, Problem-Solving
-- **Detailed Explanations**: Learn from both correct and incorrect answers
-- **Custom Focus Areas**: Target specific topics you want to practice
+- Python
+- Streamlit
+- Phidata agents
+- Groq / OpenAI model SDKs
+- LangChain document loaders and text splitters
+- ChromaDB vector store
+- DuckDuckGo/DDGS search tools
 
-### 🤖 AI Tutor
-- **24/7 Availability**: Get help whenever you need it
-- **Personalized Explanations**: Adapted to your learning style
-- **Step-by-Step Guidance**: Break down complex concepts
-- **Real-World Examples**: Understand through practical applications
+## Project Structure
 
-### 📄 RAG-Powered Document Q&A
-- **Upload Study Materials**: PDFs, textbooks, lecture notes
-- **Intelligent Search**: Find relevant information instantly
-- **Context-Aware Answers**: Get answers grounded in your materials
-- **Source Citations**: Know where information comes from
-
-### 🔍 Resource Finder
-- **Curated Resources**: AI finds the best learning materials
-- **Quality Filtered**: Only high-quality, relevant resources
-- **Learning Style Matched**: Resources suited to how you learn best
-
-## 🏗️ Architecture
-
-This project uses a multi-agent architecture where specialized AI agents collaborate:
-
+```text
+.
+├── app.py
+├── agent_handler.py
+├── study_agents.py
+├── rag_helper.py
+├── config.py
+├── prompts.yaml
+├── requirements.txt
+├── .env.example
+├── Dockerfile
+├── docker-compose.yml
+└── ARCHITECTURE.md
 ```
-study_agents.py          # Specialized AI agents (Analyzer, roadmap Creator, Quiz Generator, Tutor, Resource Finder, RAG Tutor)
-agent_handler.py         # Orchestrates agent workflows and manages state
-rag_helper.py            # RAG functionality for document-based learning
-config.py                # Configuration management
-prompts.yaml             # Agent personas and prompt templates
-app.py                   # Streamlit web interface
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/multi-agent-ai-study-assistant.git
+cd multi-agent-ai-study-assistant
 ```
-### Agent Roles
 
-1. **Student Analyzer Agent**: Assesses learning needs, identifies gaps, recommends approaches
-2. **Roadmap Creator Agent**: Designs personalized learning paths with phases and milestones
-3. **Quiz Generator Agent**: Creates adaptive assessments with explanations
-4. **Tutor Agent**: Provides explanations and answers questions
-5. **Resource Finder Agent**: Searches and recommends learning materials
-6. **RAG Tutor Agent**: Answers questions using uploaded study documents
+### 2. Create a virtual environment
 
-## 🛠️ Technologies Used
+Windows:
 
-- **Phidata**: Multi-agent orchestration framework
-- **Streamlit**: Web interface
-- **LangChain**: Document processing and RAG
-- **ChromaDB**: Vector database for RAG
-- **OpenAI/Groq**: LLM providers
-- **DuckDuckGo**: Web search for resource finding
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```
 
-## 📝 Tips for Best Results
+macOS/Linux:
 
-1. **Be Specific**: The more detailed your learning goals, the better the roadmap
-2. **Honest Assessment**: Accurately rate your knowledge level for best recommendations
-3. **Upload Materials**: Use the RAG feature with your textbooks and notes for personalized help
-4. **Regular Quizzes**: Test yourself frequently to reinforce learning
-5. **Follow the Roadmap**: Trust the AI's structured approach
-6. **Ask Questions**: Use the tutor liberally - there are no dumb questions!
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-## 🎨 Learning Styles Explained
+### 3. Install dependencies
 
-The AI adapts to your preferred learning style to maximize effectiveness. Choose the one that best describes how you learn:
-
-### 👁️ Visual Learners
-**How you learn best:** Through seeing and observing
-
-**Characteristics:**
-- Prefer diagrams, charts, and images
-- Remember faces better than names
-- Like color-coded notes and mind maps
-- Benefit from watching demonstrations
-
-**Recommended resources:**
-- 📊 Infographics and flowcharts
-- 🎥 Video tutorials and demonstrations
-- 🗺️ Mind maps and concept diagrams
-- 📈 Visual data representations
-- 🎨 Color-coded study materials
-
-**Study tips:**
-- Use highlighters and color coding
-- Draw diagrams to understand concepts
-- Watch video explanations
-- Create visual summaries
-
----
-
-### 🎧 Auditory Learners
-**How you learn best:** Through listening and speaking
-
-**Characteristics:**
-- Prefer verbal instructions
-- Remember what you hear
-- Enjoy discussions and lectures
-- Often talk through problems
-
-**Recommended resources:**
-- 🎙️ Podcasts and audio lectures
-- 💬 Discussion forums and study groups
-- 🗣️ Verbal explanations and debates
-- 🎵 Educational songs or mnemonics
-- 📻 Audio books and recordings
-
-**Study tips:**
-- Read notes aloud
-- Record and listen to lectures
-- Discuss topics with others
-- Use verbal repetition
-- Explain concepts out loud
-
----
-
-### 🤸 Kinesthetic Learners
-**How you learn best:** Through doing and hands-on experience
-
-**Characteristics:**
-- Learn by doing and practicing
-- Prefer physical activity and movement
-- Like real-world applications
-- Need to try things yourself
-
-**Recommended resources:**
-- 💻 Interactive coding platforms (for programming)
-- 🔬 Lab experiments and simulations
-- 🎮 Educational games and interactive tools
-- 🛠️ Hands-on projects and exercises
-- 🏃 Physical models and manipulatives
-
-**Study tips:**
-- Build projects while learning
-- Use interactive simulations
-- Take frequent breaks to move
-- Practice with real examples
-- Create physical models or demonstrations
-
----
-
-### 📖 Reading/Writing Learners
-**How you learn best:** Through reading and writing
-
-**Characteristics:**
-- Prefer written information
-- Love taking detailed notes
-- Enjoy reading textbooks and articles
-- Learn by writing summaries
-
-**Recommended resources:**
-- 📚 Textbooks and comprehensive guides
-- 📝 Written tutorials and documentation
-- ✍️ Note-taking and summary exercises
-- 📄 Articles and research papers
-- 📋 Lists, definitions, and glossaries
-
-**Study tips:**
-- Take extensive notes
-- Rewrite information in your own words
-- Create written summaries
-- Use flashcards with written content
-- Read and re-read materials
-
----
-
-### 💡 How the AI Uses Your Learning Style
-
-When you select your learning style, the AI agents will:
-
-1. **Roadmap Creator**: Structures your learning path with style-appropriate milestones
-2. **Resource Finder**: Prioritizes resources matching your preferred format
-3. **Tutor Agent**: Adapts explanations using style-specific techniques
-4. **Quiz Generator**: Includes questions that align with your learning preferences
-
-**Not sure which style fits you?** Try the **Mixed/Multimodal** approach, which combines elements from all styles!
-
-## 🐛 Troubleshooting
-
-### ModuleNotFoundError: No module named 'X'
-**Solution:** Install missing dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-Common missing modules and their fixes:
-- `phidata` → `pip install phidata`
-- `openai` → `pip install openai`
-- `chromadb` → `pip install chromadb`
-- `langchain_chroma` → `pip install langchain-chroma`
-- `langchain_openai` → `pip install langchain-openai`
-- `duckduckgo_search` → `pip install duckduckgo-search`
+### 4. Configure API keys
 
-### "streamlit: command not found"
-**Solution:** Use Python module syntax
+Copy the example environment file:
+
 ```bash
-python3 -m streamlit run app.py
+cp .env.example .env
 ```
 
-Or add `~/.local/bin` to your PATH:
-```bash
-export PATH="$HOME/.local/bin:$PATH"
+Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
 ```
 
-### "No API key found" or API errors
-**Solution:**
-1. Ensure `.env` file exists in the project root
-2. Verify your API key is correctly formatted:
-   - Groq keys start with `gsk_`
-   - OpenAI keys start with `sk-`
-3. Check that the key is valid and active
-4. For OpenAI: Ensure you have credits in your account
+Add at least one provider key:
 
-### "Failed to load document" (RAG feature)
-**Solution:**
-- Ensure PDF is not password-protected
-- Check file is not corrupted
-- Try converting to text format first
-- Verify file size is reasonable (< 50MB recommended)
-
-### "Agent not responding" or timeout errors
-**Solution:**
-- Check your internet connection
-- Verify API key is valid and active
-- Try switching to a different model in the app settings
-- For Groq: Check [status.groq.com](https://status.groq.com)
-- For OpenAI: Check [status.openai.com](https://status.openai.com)
-
-### ChromaDB errors
-**Solution:**
-```bash
-# Delete the vector database and restart
-rm -rf chroma_db/
-python3 -m streamlit run app.py
+```env
+GROQ_API_KEY=your_groq_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-Ensure you have write permissions:
+Do not commit `.env`. It is intentionally ignored.
+
+### 5. Run the app
+
 ```bash
-chmod -R 755 .
+streamlit run app.py
 ```
 
-### Port already in use (Address already in use)
-**Solution:**
-```bash
-# Kill existing Streamlit processes
-pkill -f streamlit
+Open:
 
-# Or use a different port
-streamlit run app.py --server.port 8502
+```text
+http://localhost:8501
 ```
 
-## 🚀 Future Enhancements
+## Push to GitHub
 
-- [ ] Progress tracking and analytics
-- [ ] Spaced repetition scheduling
-- [ ] Collaborative study groups
-- [ ] Integration with learning platforms (Coursera, Udemy, etc.)
-- [ ] Mobile app version
-- [ ] Voice interaction for auditory learners
-- [ ] Gamification and achievements
-- [ ] Export to Anki flashcards
+The project is configured to ignore local-only folders and files such as `.venv/`, `node_modules/`, `.env`, caches, logs, uploaded documents, and ChromaDB data.
 
-## 📄 License
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/your-username/your-repo-name.git
+git push -u origin main
+```
 
-This project is open source and available for educational purposes.
+## Docker
 
-## 🙏 Acknowledgments
+```bash
+docker compose up --build
+```
 
-- Built with [Phidata](https://docs.phidata.com/) multi-agent framework
-- Powered by Groq and OpenAI LLMs
-- Uses LangChain for document processing and RAG functionality
+Make sure your environment variables are available through `.env` or your shell.
 
-## 💬 Support
+## Notes
 
-For issues, questions, or suggestions:
-1. Check the troubleshooting section above
-2. Review the configuration in `prompts.yaml`
-3. Ensure all dependencies are correctly installed
+- Generated local data is ignored by `.gitignore` and `.dockerignore`.
+- Document retrieval uses lightweight local lexical embeddings, then the selected chat model writes the final answer.
+- The app is intended for study assistance. Verify critical information independently.
 
----
+## License
 
-**Happy Learning! 📚✨**
-
-*Remember: The best way to learn is to start. Let AI agents guide your journey!*
+Add your preferred license before publishing the repository.
